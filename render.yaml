@@ -6,6 +6,6 @@ services:
     startCommand: npm start
     envVars:
       - key: NEXT_PUBLIC_ADSENSE_PUBLISHER_ID
-        sync: false
+        value: ca-pub-4304502432915728
       - key: NEXT_PUBLIC_MEDIANET_CUSTOMER_ID
         sync: false
