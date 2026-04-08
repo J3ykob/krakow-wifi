@@ -66,13 +66,12 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google AdSense with Auto Ads enabled */}
+        {/* Google AdSense — raw script tag so Google's crawler can verify ownership */}
         {hasAdsense && (
-          <Script
+          <script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
             crossOrigin="anonymous"
-            strategy="afterInteractive"
           />
         )}
 
