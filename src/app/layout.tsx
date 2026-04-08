@@ -66,10 +66,13 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google AdSense — raw script tag so Google's crawler can verify ownership */}
+        {/* Google AdSense — dangerouslySetInnerHTML to bypass Next.js script optimization */}
         {hasAdsense && (
           <script
-            async
+            dangerouslySetInnerHTML={{
+              __html: "",
+            }}
+            async={true}
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
             crossOrigin="anonymous"
           />
