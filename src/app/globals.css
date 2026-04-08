@@ -87,3 +87,132 @@ html {
 .progress-bar {
   animation: progress var(--duration, 5s) linear forwards;
 }
+
+/* ─── V2 SMOCZEK PAGE ─── */
+
+/* Fonts — playful + readable */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap');
+
+.v2-display {
+  font-family: 'Baloo 2', cursive, system-ui;
+  font-weight: 700;
+}
+
+.v2-body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* Hero background — warm gradient with subtle pattern */
+.v2-hero {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(74, 222, 128, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(240, 180, 41, 0.08) 0%, transparent 50%),
+    linear-gradient(175deg, #fef9ef 0%, #f6efe0 40%, #eee5d3 100%);
+}
+
+/* Floating animation */
+@keyframes v2float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.v2-float { animation: v2float 4s ease-in-out infinite; }
+
+/* Bounce entrance */
+@keyframes v2bounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  60% { transform: translateY(-3px); }
+}
+.v2-bounce { animation: v2bounce 2.5s ease-in-out infinite; }
+
+/* Waving hand animation */
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
+}
+
+/* Tail wiggle */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+/* CTA button */
+.v2-cta {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow:
+    0 4px 15px rgba(34, 197, 94, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-family: 'Baloo 2', cursive;
+}
+.v2-cta:hover {
+  box-shadow:
+    0 6px 25px rgba(34, 197, 94, 0.5),
+    0 2px 5px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.v2-cta-secondary {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2a4a6f 100%);
+  color: white;
+  font-family: 'Baloo 2', cursive;
+  box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+}
+
+/* Pick cards */
+.v2-pick-card {
+  background: white;
+  border: 2px solid #e8dcc8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.v2-pick-card:hover {
+  border-color: #22c55e;
+  box-shadow:
+    0 4px 20px rgba(34, 197, 94, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Hotspot cards */
+.v2-hotspot-card {
+  background: white;
+  border: 2px solid #e8dcc8;
+  transition: all 0.2s;
+}
+.v2-hotspot-card:hover {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+/* Tip cards */
+.v2-tip-card {
+  background: white;
+  border: 2px solid #e8dcc8;
+  transition: all 0.2s;
+}
+.v2-tip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Footer */
+.v2-footer {
+  background:
+    linear-gradient(0deg, #f0e8d8 0%, #fef9ef 100%);
+  border-top: 2px dashed #e8dcc8;
+}
+
+/* Page background */
+.v2-page {
+  background: #fef9ef;
+}
+
+/* V2 ad container overrides */
+.v2-page .ad-container {
+  background: #f5efe3;
+  border-color: #e8dcc8;
+  border-style: dashed;
+}
