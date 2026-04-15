@@ -1,42 +1,58 @@
 import Link from "next/link";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import LangSwitcher from "./LangSwitcher";
+import SearchBox from "./SearchBox";
+import { buildSearchIndex } from "@/content/search-index";
 
-export default function Header() {
+export default async function Header({ locale }: { locale: Locale }) {
+  const dict = await getDictionary(locale);
+  const base = `/${locale}`;
+  const searchIndex = buildSearchIndex(locale);
+  const searchPlaceholder = locale === "pl" ? "Szukaj…" : "Search…";
+
+  const items = [
+    { href: `${base}/wifi`, label: dict.nav.wifi },
+    { href: `${base}/transport`, label: dict.nav.transport },
+    { href: `${base}/food`, label: dict.nav.food },
+    { href: `${base}/areas`, label: dict.nav.areas },
+    { href: `${base}/money`, label: dict.nav.money },
+    { href: `${base}/connect`, label: dict.nav.connect },
+    { href: `${base}/day-trips`, label: dict.nav.dayTrips },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-card-border">
-      <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-              <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-              <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-              <circle cx="12" cy="20" r="1" fill="white" />
-            </svg>
-          </div>
-          <div>
-            <h1 className="text-base font-bold text-foreground leading-tight">
-              Kraków WiFi
-            </h1>
-            <p className="text-[10px] text-muted leading-tight uppercase tracking-wider">
-              Free Hotspots
-            </p>
-          </div>
-        </Link>
-        <a
-          href="https://www.krakow.pl/196800,artykul,miejskie_hot_spoty_-_darmowe_wi-fi.html"
-          className="text-xs font-semibold bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition-colors"
+    <header className="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-card-border">
+      <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
+        <Link
+          href={base}
+          className="flex items-center gap-2 font-semibold text-foreground"
         >
-          View Map
-        </a>
+          <span
+            aria-hidden
+            className="w-7 h-7 rounded-lg bg-primary text-white grid place-items-center text-[13px] font-bold"
+          >
+            CC
+          </span>
+          <span className="text-[15px] tracking-tight">
+            City<span className="text-primary">Compass</span>
+          </span>
+        </Link>
+        <nav className="hidden lg:flex items-center gap-1 text-sm">
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="px-2.5 py-1.5 rounded-lg text-muted hover:text-foreground hover:bg-blue-50 transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-2">
+          <SearchBox index={searchIndex} placeholder={searchPlaceholder} />
+          <LangSwitcher locale={locale} />
+        </div>
       </div>
     </header>
   );

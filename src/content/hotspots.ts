@@ -1,0 +1,682 @@
+export type District =
+  | "old-town"
+  | "kazimierz"
+  | "wawel"
+  | "podgorze"
+  | "nowa-huta"
+  | "other";
+
+export type HotspotKind =
+  | "square"
+  | "park"
+  | "office"
+  | "library"
+  | "museum"
+  | "transport"
+  | "outdoor";
+
+export interface Hotspot {
+  id: string;
+  name: string;
+  district: District;
+  kind: HotspotKind;
+  lat: number;
+  lng: number;
+  ssid: string;
+  noteEn: string;
+  notePl: string;
+}
+
+/**
+ * Curated subset of the City of Kraków municipal hotspot programme.
+ * Source for raw locations: krakow.pl ("Miejskie hot spoty – darmowe Wi-Fi").
+ * We have hand-picked the most useful spots for visitors, added a district,
+ * a kind, and a practical note in EN + PL.
+ *
+ * Coordinates are from OpenStreetMap. Some are approximate (within ~25 m).
+ */
+export const HOTSPOTS: Hotspot[] = [
+  // Old Town
+  {
+    id: "rynek-glowny",
+    name: "Rynek Główny (Main Market Square)",
+    district: "old-town",
+    kind: "square",
+    lat: 50.0617,
+    lng: 19.937,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Strongest signal near the Cloth Hall and on benches by Adam Mickiewicz statue. Crowded — connection slows on summer evenings.",
+    notePl:
+      "Najmocniejszy sygnał przy Sukiennicach i ławkach przy pomniku Mickiewicza. W letnie wieczory tłum spowalnia połączenie.",
+  },
+  {
+    id: "plac-szczepanski",
+    name: "Plac Szczepański",
+    district: "old-town",
+    kind: "square",
+    lat: 50.0633,
+    lng: 19.9357,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Quieter than Rynek, perfect to sit and plan your day.",
+    notePl: "Spokojniej niż na Rynku, dobre miejsce żeby usiąść i zaplanować dzień.",
+  },
+  {
+    id: "plac-mariacki",
+    name: "Plac Mariacki",
+    district: "old-town",
+    kind: "square",
+    lat: 50.0617,
+    lng: 19.9395,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Right next to St. Mary's Basilica. Good for a quick map check.",
+    notePl: "Tuż obok Bazyliki Mariackiej. Dobre na szybkie sprawdzenie mapy.",
+  },
+  {
+    id: "mały-rynek",
+    name: "Mały Rynek",
+    district: "old-town",
+    kind: "square",
+    lat: 50.0619,
+    lng: 19.9404,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Small cobbled square one block east of Rynek. Reliable signal.",
+    notePl: "Mały brukowany placyk przecznicę na wschód od Rynku. Stabilny sygnał.",
+  },
+  {
+    id: "planty-florianska",
+    name: "Planty — Floriańska Gate",
+    district: "old-town",
+    kind: "park",
+    lat: 50.0651,
+    lng: 19.9417,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Green belt benches just outside the Floriańska Gate. Shade in summer.",
+    notePl:
+      "Ławki na Plantach tuż przed Bramą Floriańską. Cień latem.",
+  },
+  {
+    id: "planty-jagiellonska",
+    name: "Planty — near Jagiellonian University",
+    district: "old-town",
+    kind: "park",
+    lat: 50.0613,
+    lng: 19.9325,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Quiet stretch of Planty popular with students.",
+    notePl: "Spokojny odcinek Plant lubiany przez studentów.",
+  },
+  {
+    id: "rynek-podziemny",
+    name: "Rynek Underground entrance",
+    district: "old-town",
+    kind: "museum",
+    lat: 50.0617,
+    lng: 19.9379,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Hotspot reaches the ticket area; no signal underground.",
+    notePl: "Sygnał dochodzi do wejścia kasowego, w podziemiach już go nie ma.",
+  },
+  {
+    id: "magistrat",
+    name: "Plac Wszystkich Świętych (City Hall)",
+    district: "old-town",
+    kind: "office",
+    lat: 50.0606,
+    lng: 19.9367,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Outdoor coverage in front of the Magistrat building.",
+    notePl: "Zasięg na zewnątrz przed Magistratem.",
+  },
+  // Kazimierz
+  {
+    id: "plac-nowy",
+    name: "Plac Nowy",
+    district: "kazimierz",
+    kind: "square",
+    lat: 50.0517,
+    lng: 19.9445,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "The heart of Kazimierz. Look for the round market hall — signal works well around the perimeter.",
+    notePl:
+      "Serce Kazimierza. Szukaj okrągłej hali — sygnał działa dobrze wokół niej.",
+  },
+  {
+    id: "plac-wolnica",
+    name: "Plac Wolnica",
+    district: "kazimierz",
+    kind: "square",
+    lat: 50.0497,
+    lng: 19.9446,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Square in front of the Ethnographic Museum.",
+    notePl: "Plac przed Muzeum Etnograficznym.",
+  },
+  {
+    id: "ulica-szeroka",
+    name: "Ulica Szeroka",
+    district: "kazimierz",
+    kind: "square",
+    lat: 50.0514,
+    lng: 19.9472,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Historic Jewish square lined with restaurants. Easy to find a bench with WiFi.",
+    notePl:
+      "Historyczny plac żydowski pełen restauracji. Łatwo znaleźć ławkę z zasięgiem.",
+  },
+  {
+    id: "kładka-bernatka",
+    name: "Bernatka Footbridge",
+    district: "kazimierz",
+    kind: "outdoor",
+    lat: 50.0488,
+    lng: 19.9489,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Pedestrian bridge linking Kazimierz with Podgórze. Hotspot reaches both ramps.",
+    notePl:
+      "Kładka łącząca Kazimierz z Podgórzem. Zasięg dochodzi do obu ramp.",
+  },
+  // Wawel
+  {
+    id: "wzgorze-wawelskie",
+    name: "Wawel Hill — main courtyard",
+    district: "wawel",
+    kind: "museum",
+    lat: 50.0544,
+    lng: 19.9356,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Open-air courtyard around the cathedral. Coverage is patchy near the dragon's den entrance.",
+    notePl:
+      "Dziedziniec wokół katedry. Sygnał słabszy przy wejściu do Smoczej Jamy.",
+  },
+  {
+    id: "bulwary-wislane",
+    name: "Bulwary Wiślane (Vistula boulevards)",
+    district: "wawel",
+    kind: "outdoor",
+    lat: 50.0537,
+    lng: 19.934,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Riverside benches with view of Wawel. Multiple hotspots along the path.",
+    notePl:
+      "Ławki nad Wisłą z widokiem na Wawel. Kilka hotspotów wzdłuż ścieżki.",
+  },
+  {
+    id: "ul-grodzka",
+    name: "Ulica Grodzka — at the foot of Wawel",
+    district: "wawel",
+    kind: "square",
+    lat: 50.057,
+    lng: 19.9385,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Where Grodzka opens out toward the castle.",
+    notePl: "Tam gdzie Grodzka otwiera się w kierunku zamku.",
+  },
+  // Podgórze
+  {
+    id: "rynek-podgorski",
+    name: "Rynek Podgórski",
+    district: "podgorze",
+    kind: "square",
+    lat: 50.0464,
+    lng: 19.9509,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Main square of Podgórze, dominated by St. Joseph's Church. Quiet WiFi.",
+    notePl:
+      "Główny plac Podgórza, z Kościołem św. Józefa w tle. Spokojne WiFi.",
+  },
+  {
+    id: "park-bednarskiego",
+    name: "Park Bednarskiego",
+    district: "podgorze",
+    kind: "park",
+    lat: 50.0432,
+    lng: 19.9518,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Former quarry turned park. Hotspot covers the lower terrace.",
+    notePl: "Dawny kamieniołom zamieniony w park. Zasięg na dolnym tarasie.",
+  },
+  {
+    id: "plac-bohaterow-getta",
+    name: "Plac Bohaterów Getta",
+    district: "podgorze",
+    kind: "square",
+    lat: 50.0479,
+    lng: 19.952,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Square with the empty chairs memorial. Important historical site.",
+    notePl:
+      "Plac z pomnikiem pustych krzeseł. Ważne miejsce historyczne.",
+  },
+  // Nowa Huta
+  {
+    id: "plac-centralny",
+    name: "Plac Centralny",
+    district: "nowa-huta",
+    kind: "square",
+    lat: 50.0721,
+    lng: 20.0367,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Iconic socialist-realist square. Strong signal across the whole plaza.",
+    notePl:
+      "Ikoniczny plac socrealistyczny. Mocny sygnał na całym placu.",
+  },
+  {
+    id: "aleja-roz",
+    name: "Aleja Róż",
+    district: "nowa-huta",
+    kind: "square",
+    lat: 50.0727,
+    lng: 20.035,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Pedestrian boulevard north of Plac Centralny.",
+    notePl: "Deptak na północ od Placu Centralnego.",
+  },
+  // Other / city-wide
+  {
+    id: "dworzec-glowny",
+    name: "Kraków Główny — outdoor terrace",
+    district: "other",
+    kind: "transport",
+    lat: 50.067,
+    lng: 19.946,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "Outdoor terrace by the main station. Different from the PKP indoor WiFi.",
+    notePl:
+      "Taras zewnętrzny przy dworcu głównym. Inny niż wewnętrzne WiFi PKP.",
+  },
+  {
+    id: "blonia",
+    name: "Błonia meadow",
+    district: "other",
+    kind: "park",
+    lat: 50.062,
+    lng: 19.9135,
+    ssid: "HotSpot-Krakow",
+    noteEn:
+      "48-hectare meadow in the city centre. Hotspot covers paths along the perimeter only.",
+    notePl:
+      "48-hektarowa łąka w centrum. Zasięg tylko wzdłuż chodników na obrzeżach.",
+  },
+  {
+    id: "park-jordana",
+    name: "Park Jordana",
+    district: "other",
+    kind: "park",
+    lat: 50.0626,
+    lng: 19.9145,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Family park next to Błonia. Picnic-friendly WiFi.",
+    notePl: "Rodzinny park obok Błoń. WiFi na piknik.",
+  },
+  {
+    id: "park-strzelecki",
+    name: "Park Strzelecki",
+    district: "other",
+    kind: "park",
+    lat: 50.066,
+    lng: 19.9495,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Pocket park in the centre, often overlooked.",
+    notePl: "Mały park w centrum, często pomijany.",
+  },
+  {
+    id: "tauron-arena",
+    name: "Tauron Arena forecourt",
+    district: "other",
+    kind: "outdoor",
+    lat: 50.0676,
+    lng: 19.9929,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Open square outside the main arena. Useful before events.",
+    notePl: "Otwarty plac przed halą. Przydatny przed wydarzeniami.",
+  },
+  {
+    id: "muzeum-narodowe",
+    name: "National Museum — main entrance",
+    district: "other",
+    kind: "museum",
+    lat: 50.062,
+    lng: 19.9229,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Outdoor benches by the museum stairs.",
+    notePl: "Ławki przed schodami do muzeum.",
+  },
+  {
+    id: "stary-kleparz",
+    name: "Stary Kleparz market",
+    district: "other",
+    kind: "outdoor",
+    lat: 50.067,
+    lng: 19.9402,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Traditional food market just north of the Old Town.",
+    notePl: "Tradycyjny targ tuż na północ od Starego Miasta.",
+  },
+  {
+    id: "park-krakowski",
+    name: "Park Krakowski",
+    district: "other",
+    kind: "park",
+    lat: 50.067,
+    lng: 19.9224,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Quiet 19th-century park west of the centre.",
+    notePl: "Spokojny park z XIX wieku na zachód od centrum.",
+  },
+  // Old Town additions
+  {
+    id: "ul-slawkowska",
+    name: "Ulica Sławkowska",
+    district: "old-town",
+    kind: "outdoor",
+    lat: 50.0639,
+    lng: 19.9388,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Quiet street north of Rynek lined with cafés. Reliable signal.",
+    notePl: "Cicha uliczka na północ od Rynku z kawiarniami. Stabilny sygnał.",
+  },
+  {
+    id: "ul-kanonicza",
+    name: "Ulica Kanonicza",
+    district: "old-town",
+    kind: "outdoor",
+    lat: 50.0573,
+    lng: 19.937,
+    ssid: "HotSpot-Krakow",
+    noteEn: "The most beautiful street in the Old Town, between Grodzka and Wawel.",
+    notePl: "Najpiękniejsza ulica Starego Miasta, między Grodzką a Wawelem.",
+  },
+  {
+    id: "plac-dominikanski",
+    name: "Plac Dominikański",
+    district: "old-town",
+    kind: "square",
+    lat: 50.0598,
+    lng: 19.9384,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Square in front of the Dominican basilica.",
+    notePl: "Plac przed bazyliką dominikanów.",
+  },
+  {
+    id: "ul-grodzka",
+    name: "Ulica Grodzka — Royal Route",
+    district: "old-town",
+    kind: "outdoor",
+    lat: 50.0593,
+    lng: 19.9374,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Main southern axis of the Old Town. Spotty between buildings.",
+    notePl: "Główna południowa oś Starego Miasta. Sygnał punktowy między kamienicami.",
+  },
+  {
+    id: "ul-florianska",
+    name: "Ulica Floriańska",
+    district: "old-town",
+    kind: "outdoor",
+    lat: 50.0631,
+    lng: 19.9393,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Royal Route from the Floriańska Gate to Rynek. Crowded in summer.",
+    notePl: "Droga Królewska od Bramy Floriańskiej do Rynku. Latem tłoczno.",
+  },
+  {
+    id: "barbakan",
+    name: "Barbakan",
+    district: "old-town",
+    kind: "outdoor",
+    lat: 50.0654,
+    lng: 19.9419,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Open area in front of the medieval barbican fortification.",
+    notePl: "Otwarty teren przed średniowiecznym Barbakanem.",
+  },
+  {
+    id: "plac-matejki",
+    name: "Plac Matejki",
+    district: "old-town",
+    kind: "square",
+    lat: 50.066,
+    lng: 19.9418,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Square just north of the Barbakan, with the Grunwald Monument.",
+    notePl: "Plac tuż na północ od Barbakanu, z Pomnikiem Grunwaldzkim.",
+  },
+  {
+    id: "collegium-maius",
+    name: "Collegium Maius courtyard",
+    district: "old-town",
+    kind: "museum",
+    lat: 50.0615,
+    lng: 19.9347,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Outdoor signal reaches the courtyard of the oldest UJ building.",
+    notePl: "Sygnał dochodzi do dziedzińca najstarszego budynku UJ.",
+  },
+  {
+    id: "planty-wawel",
+    name: "Planty — Wawel side",
+    district: "old-town",
+    kind: "park",
+    lat: 50.0571,
+    lng: 19.9355,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Southern stretch of Planty just before Wawel.",
+    notePl: "Południowy odcinek Plant tuż przed Wawelem.",
+  },
+  // Kazimierz additions
+  {
+    id: "ul-jozefa",
+    name: "Ulica Józefa",
+    district: "kazimierz",
+    kind: "outdoor",
+    lat: 50.0508,
+    lng: 19.9462,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Hipster street with cafés and design shops. Hotspot mid-block.",
+    notePl: "Hipsterska ulica z kawiarniami i sklepami designerskimi. Hotspot w połowie.",
+  },
+  {
+    id: "stara-synagoga",
+    name: "Old Synagogue",
+    district: "kazimierz",
+    kind: "museum",
+    lat: 50.0515,
+    lng: 19.9479,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Outdoor benches by the oldest synagogue in Poland.",
+    notePl: "Ławki przed najstarszą synagogą w Polsce.",
+  },
+  {
+    id: "ul-szewska-kazimierz",
+    name: "Ulica Krakowska — Kazimierz entry",
+    district: "kazimierz",
+    kind: "outdoor",
+    lat: 50.0537,
+    lng: 19.9426,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Where Krakowska street enters Kazimierz from the north.",
+    notePl: "Tam, gdzie ul. Krakowska wchodzi do Kazimierza od północy.",
+  },
+  {
+    id: "ul-miodowa",
+    name: "Ulica Miodowa",
+    district: "kazimierz",
+    kind: "outdoor",
+    lat: 50.0511,
+    lng: 19.946,
+    ssid: "HotSpot-Krakow",
+    noteEn: "East-west street through Kazimierz with reliable signal.",
+    notePl: "Ulica wschód-zachód przez Kazimierz, stabilny sygnał.",
+  },
+  // Wawel additions
+  {
+    id: "smocza-jama-entry",
+    name: "Dragon's Den entrance",
+    district: "wawel",
+    kind: "outdoor",
+    lat: 50.0537,
+    lng: 19.9337,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Riverbank entrance to the Smocza Jama cave.",
+    notePl: "Wejście od strony Wisły do Smoczej Jamy.",
+  },
+  {
+    id: "podzamcze",
+    name: "Podzamcze",
+    district: "wawel",
+    kind: "outdoor",
+    lat: 50.0545,
+    lng: 19.9395,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Path circling the base of Wawel Hill.",
+    notePl: "Ścieżka okalająca podnóże wzgórza wawelskiego.",
+  },
+  // Podgórze additions
+  {
+    id: "fabryka-schindlera-area",
+    name: "Schindler Factory forecourt",
+    district: "podgorze",
+    kind: "outdoor",
+    lat: 50.0476,
+    lng: 19.9614,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Open area in front of the Schindler Factory and MOCAK.",
+    notePl: "Otwarty teren przed Fabryką Schindlera i MOCAK-iem.",
+  },
+  {
+    id: "ul-limanowskiego",
+    name: "Ulica Limanowskiego",
+    district: "podgorze",
+    kind: "outdoor",
+    lat: 50.0463,
+    lng: 19.9536,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Main commercial street of old Podgórze.",
+    notePl: "Główna ulica handlowa dawnego Podgórza.",
+  },
+  {
+    id: "kopiec-krakusa-base",
+    name: "Krak Mound — base path",
+    district: "podgorze",
+    kind: "outdoor",
+    lat: 50.0445,
+    lng: 19.9605,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Bottom of the path leading up to the Krak Mound.",
+    notePl: "Początek ścieżki prowadzącej na Kopiec Krakusa.",
+  },
+  // Nowa Huta additions
+  {
+    id: "centrum-a",
+    name: "Centrum A",
+    district: "nowa-huta",
+    kind: "square",
+    lat: 50.0735,
+    lng: 20.0335,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Residential estate just north-west of Plac Centralny.",
+    notePl: "Osiedle tuż na północny zachód od Placu Centralnego.",
+  },
+  {
+    id: "teatr-ludowy",
+    name: "Teatr Ludowy",
+    district: "nowa-huta",
+    kind: "outdoor",
+    lat: 50.0719,
+    lng: 20.039,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Square in front of the People's Theatre.",
+    notePl: "Skwer przed Teatrem Ludowym.",
+  },
+  {
+    id: "arka-pana",
+    name: "Arka Pana — church square",
+    district: "nowa-huta",
+    kind: "outdoor",
+    lat: 50.0796,
+    lng: 20.0157,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Forecourt of the Lord's Ark church in Bieńczyce.",
+    notePl: "Plac przed kościołem Arki Pana w Bieńczycach.",
+  },
+  // Other / city-wide additions
+  {
+    id: "galeria-krakowska",
+    name: "Galeria Krakowska — outdoor terrace",
+    district: "other",
+    kind: "transport",
+    lat: 50.0676,
+    lng: 19.9474,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Outside the main shopping mall and train station entrance.",
+    notePl: "Przed głównym wejściem do galerii i dworca.",
+  },
+  {
+    id: "muzeum-narodowe-glowne",
+    name: "National Museum — main building",
+    district: "other",
+    kind: "museum",
+    lat: 50.0627,
+    lng: 19.9237,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Front benches of the modernist National Museum building.",
+    notePl: "Ławki przed modernistycznym budynkiem Muzeum Narodowego.",
+  },
+  {
+    id: "park-decjusza",
+    name: "Park Decjusza",
+    district: "other",
+    kind: "park",
+    lat: 50.0655,
+    lng: 19.8926,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Renaissance villa park in Wola Justowska.",
+    notePl: "Park przy renesansowej Willi Decjusza w Woli Justowskiej.",
+  },
+  {
+    id: "park-lotnikow-polskich",
+    name: "Park Lotników Polskich",
+    district: "other",
+    kind: "park",
+    lat: 50.0744,
+    lng: 19.9938,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Large park surrounding the Tauron Arena and aviation museum.",
+    notePl: "Duży park wokół Tauron Areny i Muzeum Lotnictwa.",
+  },
+  {
+    id: "plac-bohaterow-9-maja",
+    name: "Plac Inwalidów",
+    district: "other",
+    kind: "square",
+    lat: 50.0681,
+    lng: 19.9325,
+    ssid: "HotSpot-Krakow",
+    noteEn: "Tram intersection square west of the Old Town.",
+    notePl: "Plac z węzłem tramwajowym na zachód od Starego Miasta.",
+  },
+];
+
+export const DISTRICT_LABELS: Record<District, { en: string; pl: string }> = {
+  "old-town": { en: "Old Town", pl: "Stare Miasto" },
+  kazimierz: { en: "Kazimierz", pl: "Kazimierz" },
+  wawel: { en: "Wawel & Vistula", pl: "Wawel i Wisła" },
+  podgorze: { en: "Podgórze", pl: "Podgórze" },
+  "nowa-huta": { en: "Nowa Huta", pl: "Nowa Huta" },
+  other: { en: "Across the city", pl: "Cała reszta miasta" },
+};
+
+export function hotspotsByDistrict(d: District): Hotspot[] {
+  return HOTSPOTS.filter((h) => h.district === d);
+}
