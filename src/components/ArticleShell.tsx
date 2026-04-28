@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 import Toc from "./Toc";
 import RelatedGuides, { type Related } from "./RelatedGuides";
-import AdSlot from "./AdSlot";
 import JsonLd from "./JsonLd";
 import AffiliateDisclosure from "./AffiliateDisclosure";
 import { SITE_NAME, SITE_URL, type Locale } from "@/i18n/config";
@@ -105,8 +104,6 @@ export default async function ArticleShell({
         </div>
       )}
 
-      <AdSlot slot="article-top" format="responsive" className="mb-8" />
-
       <div className="prose">{children}</div>
 
       {faq && faq.length > 0 && (
@@ -135,8 +132,6 @@ export default async function ArticleShell({
           </div>
         </section>
       )}
-
-      <AdSlot slot="article-bottom" format="responsive" className="mt-10" />
 
       {related && related.length > 0 && (
         <RelatedGuides heading={dict.related.heading} items={related} />

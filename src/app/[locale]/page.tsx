@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { isLocale, type Locale, SITE_URL, SITE_NAME } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import AdSlot from "@/components/AdSlot";
 import JsonLd from "@/components/JsonLd";
 
 export async function generateMetadata({
@@ -259,8 +258,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      <AdSlot slot="home-mid" format="rectangle" className="mt-10" />
-
       {/* Section grid */}
       <section className="mt-12">
         <h2 className="text-2xl font-bold text-foreground mb-6">
@@ -293,7 +290,6 @@ export default async function HomePage({
         <p className="mt-3 text-slate-700 leading-relaxed">{t.pitchBody}</p>
       </section>
 
-      <AdSlot slot="home-bottom" format="responsive" className="mt-10" />
     </div>
   );
 }
